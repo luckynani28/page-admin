@@ -1,0 +1,32 @@
+<app-navigation></app-navigation>
+<div class="container" style="margin-top: 100px">
+  <h5>Gallery Images</h5>
+  <div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-8">
+
+        <form  >
+
+            <label for="image">Images:  </label>
+            <input id="cin" name="file" type="file" (change)="Images($event)"   placeholder="Upload a file..." multiple/><br>
+            <label for="image">ThumbnailImage:  </label>
+            <input id="cin" name="file" type="file" (change)="thumbImages($event)"   placeholder="Upload a file..." multiple/><br>
+            <label for="Heading">title:</label>
+            <textarea type="text"   class="form-control form-rounded" id="Heading" (change)="Title($event)"  name="Heading"></textarea><br>
+            <div class="form-group">
+              <label for="sel1">Language:</label>
+                <select class="form-control" id="sel1" (change)="language($event)" >
+                  <option>Choose One</option>
+                  <option>English</option>
+                  <option>Telugu</option>
+                </select>
+          </div>
+              <button type="button" class="btn btn-success btn-s" (click)="onSubmit()">
+              Upload
+              </button><br>
+        </form>
+
+      </div>
+  </div>
+</div>

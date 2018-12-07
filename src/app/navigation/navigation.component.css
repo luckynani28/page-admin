@@ -1,0 +1,24 @@
+.navbar-dark .navbar-nav .nav-link {
+  /* color:black;
+  font-family: Roboto - 400;
+  font-size: 14px;
+  line-height: 23px;
+  font-weight: 400;
+  padding-left: 50px; */
+  color:#0370BA;
+  /* font-size: 20px; */
+  font-weight: 400;
+  font-family: 'Times New Roman', Times, serif;
+  padding-right: 30px;
+}
+
+
+
+.navbar-nav img{
+  margin-left: -60px;
+  margin-right: 20px;
+}
+/* .active,.nav-link:hover {
+  color: blue;
+  background-color: aliceblue;
+} */

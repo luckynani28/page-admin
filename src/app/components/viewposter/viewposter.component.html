@@ -1,0 +1,195 @@
+<div class="container-fluid" style="margin-top: 100px">
+  <button type="button" id="buttonalign" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">AddNewPoster</button>
+  <div class="row">
+    <div class="card" *ngFor="let list of listdata | paginate: { itemsPerPage: 2, currentPage: p , totalItems:totalcount  } ">
+      <img class="card-img-top" src="{{list.promoimg}}" alt="Card image" id="cardimg">
+      <div class="card-body">
+        <h4 class="card-title">{{list.title}}</h4>
+        <i class="fa fa-pencil" id="edit" aria-hidden="true" (click)="edititem(list.id)" data-toggle="modal"
+          data-target="#myModal1"></i>
+        <i class="fa fa-eye" aria-hidden="true" (click)="viewitem(list.id)" data-toggle="modal" data-target="#myModal2"></i>
+        <i class="fa fa-trash" aria-hidden="true" (click)="deleteitem(list.id)"></i>
+      </div>
+    </div>
+  </div>
+
+<pagination-controls (pageChange)="p = $event" (pageChange) = "pagiantionList($event)"></pagination-controls>
+
+</div>
+
+<!-- for model -->
+<div class="modal" id="myModal" class="modal fade">
+  <div class="modal-dialog model-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <h5>Posters</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <!-- form starting code  -->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+              <form>
+                <label for="image">Image: </label>
+                <input id="cin" name="file" type="file" (change)="fileChangeEvent($event)"
+                  placeholder="Upload a file..." multiple />
+                <br>
+                <label for="Heading">Title:</label>
+                <textarea type="text" id="Heading" class="form-control form-rounded" name="Heading" (change)="fileChangeEvent2($event)"
+                  required></textarea><br>
+                <div class="form-group">
+                  <label for="sel1">ContentType:</label>
+                  <select class="form-control" id="sel1" (change)="contenttype($event)" required>
+                    <option value=""> ------Choose One------ </option>
+                    <option value="Promotion">Promotion</option>
+                    <option value="Advertisments">Advertisments</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="sel1">Language:</label>
+                  <select class="form-control" id="sel1" (change)="language($event)">
+                    <option>Choose One</option>
+                    <option>English</option>
+                    <option>Telugu</option>
+                  </select>
+                </div>
+                <button type="button" class="btn btn-success btn-s" (click)="onSubmit()">
+                  Upload
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- form ending code -->
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- view model -->
+<!-- for model -->
+<div class="modal" id="myModal2" class="modal fade">
+  <div class="modal-dialog model-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <h5>Posters</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <!-- form starting code  -->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+              <form>
+                <span class="image">Image: </span>
+                <img src="{{viewdata.promoimg}}" width="150px" height="150px">
+                <br><span class="image">Title: </span> {{viewdata.title}}
+                <br><span class="image">ContentType:</span>{{viewdata.contenttype}}
+                <br> <span class="image">Language:</span>{{viewdata.language}}
+                <input type="text" class="form-control" value={{viewdata.id}}>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- form ending code -->
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- edit model -->
+<!-- for model -->
+<div class="modal" id="myModal1" class="modal fade">
+  <div class="modal-dialog model-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <h5>Posters</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <!-- form starting code  -->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+              <form>
+                <label>id:</label>
+                <input type="text" class="form-control" value={{editdata.id}} (change)="editId($event)">
+                <label for="image">Image: </label>
+                <input id="cin" name="file" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..."
+                  multiple />
+                <br>
+                <label for="Heading">Title:</label>
+                <textarea type="text" id="Heading" class="form-control form-rounded" name="Heading" (change)="fileChangeEvent2($event)"
+                  required></textarea><br>
+                <div class="form-group">
+                  <label for="sel1">ContentType:</label>
+                  <select class="form-control" id="sel1" (change)="contenttype($event)" required>
+                    <option value=""> ------Choose One------ </option>
+                    <option value="Promotion">Promotion</option>
+                    <option value="Advertisments">Advertisments</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="sel1">Language:</label>
+                  <select class="form-control" id="sel1" (change)="language($event)">
+                    <option>Choose One</option>
+                    <option>English</option>
+                    <option>Telugu</option>
+                  </select>
+                </div>
+                <button type="button" class="btn btn-success btn-s" (click)="Save()">
+                  SaveChanges
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- form ending code -->
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
